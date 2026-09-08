@@ -21,11 +21,11 @@
       padding-bottom: 90px;
     }
 
-    /* Banner Principal (Hero) */
+    /* Banner Principal */
     .hero {
       position: relative;
       width: 100%;
-      height: 65vh;
+      height: 60vh;
       background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 70%, #000000 100%),
                   url('IMG_2933.jpeg') center/cover no-repeat;
       display: flex;
@@ -100,7 +100,7 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Leitor de Vídeo Integrado à Aula */
+    /* Leitor de Vídeo da Aula */
     .video-section {
       display: none;
       padding: 10px 20px 20px;
@@ -127,7 +127,7 @@
       border: 0;
     }
 
-    /* Seção de Módulos estilo Netflix */
+    /* Seção de Módulos */
     .section-container {
       padding: 25px 20px 10px;
     }
@@ -158,9 +158,9 @@
     .card-thumb {
       position: relative;
       width: 100%;
-      height: 150px;
+      height: 160px;
       border-radius: 14px;
-      border: 1px solid #1e1e1e;
+      border: 1px solid #222222;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -171,19 +171,12 @@
       background-position: center;
     }
 
-    .card-thumb::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85));
-    }
-
     .card-badge {
       position: relative;
       z-index: 2;
       font-size: 10px;
       color: #ffffff;
-      background: rgba(0, 102, 255, 0.85);
+      background: #0066ff;
       padding: 4px 10px;
       border-radius: 12px;
       width: fit-content;
@@ -193,16 +186,20 @@
     .card-title-container {
       position: relative;
       z-index: 2;
+      background: rgba(0, 0, 0, 0.82);
+      padding: 8px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
     }
 
     .card-title {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       color: #ffffff;
       line-height: 1.3;
     }
 
-    /* Navegação Inferior Padronizada */
+    /* Menu Inferior */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -270,18 +267,21 @@
     </div>
 
     <div class="modules-grid">
-  <!-- Aula 1 ajustada para imagem clara -->
-<div class="card-thumb" style="background-image: url('mentora.png'); background-size: cover; background-position: top center;" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">
-  <div class="card-badge">Aula 1</div>
-  <div class="card-title-container" style="background: rgba(0,0,0,0.75); padding: 6px; border-radius: 8px;">
-    <div class="card-title" style="color: #ffffff;">Como se cadastrar na mentora →</div>
-  </div>
-</div>
-
+      <!-- Aula 1 (Mentora com visual limpo do formulário) -->
+      <div class="card-thumb" style="background-color: #5c18b5; background-image: linear-gradient(135deg, #6c1ebf 0%, #4a1296 100%);" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">
+        <div class="card-badge">Aula 1</div>
+        <div style="text-align: center; margin: 10px 0;">
+          <span style="font-size: 18px; font-weight: 800; color: #ffffff; letter-spacing: -0.5px;">ment<span style="border-bottom: 2px solid #ffffff;">o</span>ra</span>
+        </div>
+        <div class="card-title-container">
+          <div class="card-title">Como se cadastrar na mentora →</div>
+        </div>
+      </div>
 
       <!-- Aula 2 -->
       <div class="card-thumb" style="background-image: url('IMG_2933.jpeg');" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">
         <div class="card-badge">Aula 2</div>
+        <div></div>
         <div class="card-title-container">
           <div class="card-title">Criação e Inovação Visual →</div>
         </div>
