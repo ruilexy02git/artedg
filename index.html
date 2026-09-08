@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arte Digital - Área de Membros</title>
-  
-  <!-- Configurações WebApp / PWA para instalar no ecrã principal -->
-  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFydGUgRGlnaXRhbCIsCiAgInNob3J0X25hbWUiIjogIkFydGVEaWdpdGFsIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDAwMDAwIiwKICAidGhlbWVfY29sb3IiIjogIiMwMDY2ZmYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJJTUdfMjkzMy5qcGVnIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9qcGVnIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
+
+  <!-- Configurações WebApp / PWA -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFydGUgRGlnaXRhbCIsCiAgInNob3J0X25hbWUiIjogIkFydGVEaWdpdGFsIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDAwMDAwIiwKICAidGhlbWVfY29sb3IiIjogIiMwMDY2ZmYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJJTUdfMjkzMy5qcGVnIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9qcGVnIgogICAgfQogIF0KfQ==">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Arte Digital">
@@ -18,37 +18,14 @@
       background-color: #000000;
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding-bottom: 80px;
-    }
-
-    /* Botão Instalar App no Topo */
-    .top-bar {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      z-index: 10;
-    }
-
-    .btn-install {
-      background: #0066ff;
-      color: #ffffff;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+      padding-bottom: 90px;
     }
 
     /* Banner Principal (Hero) */
     .hero {
       position: relative;
       width: 100%;
-      height: 70vh;
+      height: 65vh;
       background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 70%, #000000 100%),
                   url('IMG_2933.jpeg') center/cover no-repeat;
       display: flex;
@@ -123,57 +100,22 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Leitor do Vídeo com Capa antes do Play */
+    /* Leitor de Vídeo Integrado à Aula */
     .video-section {
       display: none;
-      padding: 20px;
+      padding: 10px 20px 20px;
       max-width: 900px;
       margin: 0 auto;
     }
 
-    .video-poster {
-      position: relative;
-      width: 100%;
-      height: 240px;
-      background: url('IMG_2933.jpeg') center/cover no-repeat;
-      border-radius: 16px;
-      border: 1px solid #0066ff44;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .play-btn-overlay {
-      width: 60px;
-      height: 60px;
-      background: rgba(0, 102, 255, 0.9);
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 20px rgba(0, 102, 255, 0.6);
-    }
-
-    .play-btn-overlay::after {
-      content: "";
-      display: block;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 10px 0 10px 18px;
-      border-color: transparent transparent transparent #ffffff;
-      margin-left: 4px;
-    }
-
     .video-wrapper {
-      display: none;
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: 16px;
       border: 1px solid #0066ff44;
+      box-shadow: 0 10px 25px rgba(0, 102, 255, 0.2);
     }
 
     .video-wrapper iframe {
@@ -216,8 +158,7 @@
     .card-thumb {
       position: relative;
       width: 100%;
-      height: 140px;
-      background: url('IMG_2933.jpeg') center/cover no-repeat;
+      height: 150px;
       border-radius: 14px;
       border: 1px solid #1e1e1e;
       overflow: hidden;
@@ -226,13 +167,15 @@
       justify-content: space-between;
       padding: 10px;
       cursor: pointer;
+      background-size: cover;
+      background-position: center;
     }
 
     .card-thumb::before {
       content: "";
       position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.85));
     }
 
     .card-badge {
@@ -240,7 +183,7 @@
       z-index: 2;
       font-size: 10px;
       color: #ffffff;
-      background: rgba(0, 102, 255, 0.8);
+      background: rgba(0, 102, 255, 0.85);
       padding: 4px 10px;
       border-radius: 12px;
       width: fit-content;
@@ -259,7 +202,7 @@
       line-height: 1.3;
     }
 
-    /* Navegação Inferior */
+    /* Navegação Inferior Padronizada */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -274,13 +217,16 @@
     }
 
     .nav-item {
-      color: #666;
+      color: #666666;
       text-decoration: none;
       font-size: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
 
     .nav-item svg {
@@ -296,11 +242,6 @@
 </head>
 <body>
 
-  <!-- Topo com Ação de Instalar -->
-  <div class="top-bar">
-    <button class="btn-install" onclick="installApp()">📥 Instalar app</button>
-  </div>
-
   <!-- Banner Topo -->
   <div class="hero">
     <div class="hero-content">
@@ -308,18 +249,15 @@
       <h1 class="hero-title">Arte <span>Digital</span></h1>
       <p class="hero-subtitle">A área de membros 100% focada em inovação e criação visual.</p>
       <div class="hero-buttons">
-        <a href="#player" class="btn-main" onclick="openPlayer()">► Assistir</a>
+        <a href="#player" class="btn-main" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">► Assistir</a>
         <a href="#" class="btn-sec">Saiba mais →</a>
       </div>
     </div>
   </div>
 
-  <!-- Leitor de Vídeo com Capa antes do Play -->
+  <!-- Leitor de Vídeo da Aula -->
   <div id="player" class="video-section">
-    <div id="poster" class="video-poster" onclick="startVideo()">
-      <div class="play-btn-overlay"></div>
-    </div>
-    <div id="wrapper" class="video-wrapper">
+    <div class="video-wrapper">
       <iframe id="iframe-video" src="" allowfullscreen></iframe>
     </div>
   </div>
@@ -332,14 +270,16 @@
     </div>
 
     <div class="modules-grid">
-      <div class="card-thumb" onclick="openPlayer()">
+      <!-- Aula 1 com a imagem da Mentora -->
+      <div class="card-thumb" style="background-image: url('mentora.png');" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">
         <div class="card-badge">Aula 1</div>
         <div class="card-title-container">
-          <div class="card-title">Como se cadastrar na mentoria →</div>
+          <div class="card-title">Como se cadastrar na mentora →</div>
         </div>
       </div>
 
-      <div class="card-thumb" onclick="openPlayer()">
+      <!-- Aula 2 -->
+      <div class="card-thumb" style="background-image: url('IMG_2933.jpeg');" onclick="openPlayer('https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1')">
         <div class="card-badge">Aula 2</div>
         <div class="card-title-container">
           <div class="card-title">Criação e Inovação Visual →</div>
@@ -354,18 +294,22 @@
       <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
       Início
     </a>
-    <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
-      Aulas
-    </a>
-    <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-      Grupos
-    </a>
+    
+    <button class="nav-item" onclick="installApp()">
+      <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+      Baixar App
+    </button>
+
+    <button class="nav-item" onclick="toggleDesktopView()">
+      <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+      Computador
+    </button>
+
     <a href="#" class="nav-item">
       <svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
       Suporte
     </a>
+
     <a href="#" class="nav-item">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
       Instagram
@@ -384,20 +328,27 @@
       if (deferredPrompt) {
         deferredPrompt.prompt();
       } else {
-        alert("Para adicionar ao ecrã principal:\n\nNo iPhone (Safari): Toque no botão 'Partilhar' e selecione 'Adicionar ao Ecrã Principal'.\n\nNo Android (Chrome): Toque nos 3 pontos e selecione 'Instalar Aplicação'.");
+        alert("Para adicionar ao ecrã principal:\n\n• No iPhone (Safari): Toque no botão 'Partilhar' e escolha 'Adicionar ao Ecrã Principal'.\n• No Android (Chrome): Toque nos três pontos do navegador e selecione 'Instalar Aplicação'.");
       }
     }
 
-    function openPlayer() {
-      const player = document.getElementById('player');
-      player.style.display = 'block';
-      player.scrollIntoView({ behavior: 'smooth' });
+    function toggleDesktopView() {
+      const viewport = document.querySelector('meta[name="viewport"]');
+      if (viewport.getAttribute('content').includes('1280')) {
+        viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+        alert("Modo mobile ativado.");
+      } else {
+        viewport.setAttribute('content', 'width=1280');
+        alert("Modo computador ativado.");
+      }
     }
 
-    function startVideo() {
-      document.getElementById('poster').style.display = 'none';
-      document.getElementById('wrapper').style.display = 'block';
-      document.getElementById('iframe-video').src = "https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1";
+    function openPlayer(videoUrl) {
+      const player = document.getElementById('player');
+      const iframe = document.getElementById('iframe-video');
+      iframe.src = videoUrl;
+      player.style.display = 'block';
+      player.scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 
