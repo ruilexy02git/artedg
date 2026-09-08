@@ -1,55 +1,726 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arte Digital - Videoaulas</title>
-    <style>
-        body {
-            background-color: #141414;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #E50914;
-            text-align: center;
-        }
-        p {
-            text-align: center;
-            color: #aaaaaa;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .video-box {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        .video-box iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arte Digital - Criação e Inovação Visual</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0b0b;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding-bottom: 70px;
+    }
+
+    /* Banner Principal com a Imagem do Repositório */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
+                  url('IMG_2933.jpeg') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 85, 255, 0.25);
+      border: 1px solid #0055ff;
+      color: #38b6ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Título em Azul Degradê inspirado na Imagem */
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #cccccc;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-main {
+      background: linear-gradient(90deg, #00d2ff, #0055ff);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
+    }
+
+    .btn-sec {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      backdrop-filter: blur(5px);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Area do Player de Vídeo */
+    .video-container {
+      display: none;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 2px solid #0055ff;
+    }
+
+    /* Módulos e Aulas */
+    .section-container {
+      padding: 25px 20px 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-header span {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background-color: #141419;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid #0055ff33;
+    }
+
+    .card .card-badge {
+      font-size: 10px;
+      color: #00d2ff;
+      background: rgba(0, 210, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 10px;
+      width: fit-content;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Navegação Inferior */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #0f0f14;
+      border-top: 1px solid #1a1a24;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    .nav-item {
+      color: #777;
+      text-decoration: none;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-item.active {
+      color: #00d2ff;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Arte Digital</h1>
-        <p>Bem-vindo ao catálogo de videoaulas!</p>
-        
-        <div class="video-box">
-            <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
-        </div>
+
+  <!-- Banner Topo com Imagem e Letras Azuis -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="badge">Módulo 01</div>
+      <h1 class="hero-title">ARTE DIGITAL</h1>
+      <p class="hero-subtitle">Criação e Inovação Visual</p>
+      <div class="hero-buttons">
+        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
+        <a href="#" class="btn-sec">Saiba mais →</a>
+      </div>
     </div>
+  </div>
+
+  <!-- Leitor do Vídeo YouTube -->
+  <div id="player" class="video-container">
+    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+  </div>
+
+  <!-- Lista de Aulas -->
+  <div class="section-container">
+    <div class="section-header">
+      <h2>Módulos</h2>
+      <span>12 aulas</span>
+    </div>
+
+    <div class="modules-grid">
+      <div class="card">
+        <div class="card-badge">Aula 1</div>
+        <div class="card-title">Introdução ao Curso</div>
+      </div>
+      <div class="card">
+        <div class="card-badge">Aula 2</div>
+        <div class="card-title">Criação e Design</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Inferior -->
+  <div class="bottom-nav">
+    <a href="#" class="nav-item active">🏠<br>Início</a>
+    <a href="#" class="nav-item">📚<br>Aulas</a>
+    <a href="#" class="nav-item">💬<br>Grupos</a>
+    <a href="#" class="nav-item">🎧<br>Suporte</a>
+    <a href="#" class="nav-item">📷<br>Instagram</a>
+  </div>
+
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arte Digital - Criação e Inovação Visual</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0b0b;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding-bottom: 70px;
+    }
+
+    /* Banner Principal com a Imagem do Repositório */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
+                  url('IMG_2933.jpeg') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 85, 255, 0.25);
+      border: 1px solid #0055ff;
+      color: #38b6ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Título em Azul Degradê inspirado na Imagem */
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #cccccc;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-main {
+      background: linear-gradient(90deg, #00d2ff, #0055ff);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
+    }
+
+    .btn-sec {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      backdrop-filter: blur(5px);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Area do Player de Vídeo */
+    .video-container {
+      display: none;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 2px solid #0055ff;
+    }
+
+    /* Módulos e Aulas */
+    .section-container {
+      padding: 25px 20px 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-header span {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background-color: #141419;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid #0055ff33;
+    }
+
+    .card .card-badge {
+      font-size: 10px;
+      color: #00d2ff;
+      background: rgba(0, 210, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 10px;
+      width: fit-content;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Navegação Inferior */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #0f0f14;
+      border-top: 1px solid #1a1a24;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    .nav-item {
+      color: #777;
+      text-decoration: none;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-item.active {
+      color: #00d2ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Banner Topo com Imagem e Letras Azuis -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="badge">Módulo 01</div>
+      <h1 class="hero-title">ARTE DIGITAL</h1>
+      <p class="hero-subtitle">Criação e Inovação Visual</p>
+      <div class="hero-buttons">
+        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
+        <a href="#" class="btn-sec">Saiba mais →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leitor do Vídeo YouTube -->
+  <div id="player" class="video-container">
+    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+  </div>
+
+  <!-- Lista de Aulas -->
+  <div class="section-container">
+    <div class="section-header">
+      <h2>Módulos</h2>
+      <span>12 aulas</span>
+    </div>
+
+    <div class="modules-grid">
+      <div class="card">
+        <div class="card-badge">Aula 1</div>
+        <div class="card-title">Introdução ao Curso</div>
+      </div>
+      <div class="card">
+        <div class="card-badge">Aula 2</div>
+        <div class="card-title">Criação e Design</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Inferior -->
+  <div class="bottom-nav">
+    <a href="#" class="nav-item active">🏠<br>Início</a>
+    <a href="#" class="nav-item">📚<br>Aulas</a>
+    <a href="#" class="nav-item">💬<br>Grupos</a>
+    <a href="#" class="nav-item">🎧<br>Suporte</a>
+    <a href="#" class="nav-item">📷<br>Instagram</a>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arte Digital - Criação e Inovação Visual</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0b0b0b;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding-bottom: 70px;
+    }
+
+    /* Banner Principal com a Imagem do Repositório */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
+                  url('IMG_2933.jpeg') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    .hero-content {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(0, 85, 255, 0.25);
+      border: 1px solid #0055ff;
+      color: #38b6ff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* Título em Azul Degradê inspirado na Imagem */
+    .hero-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: #cccccc;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-main {
+      background: linear-gradient(90deg, #00d2ff, #0055ff);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
+    }
+
+    .btn-sec {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      backdrop-filter: blur(5px);
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Area do Player de Vídeo */
+    .video-container {
+      display: none;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 12px;
+      border: 2px solid #0055ff;
+    }
+
+    /* Módulos e Aulas */
+    .section-container {
+      padding: 25px 20px 10px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .section-header span {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background-color: #141419;
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid #0055ff33;
+    }
+
+    .card .card-badge {
+      font-size: 10px;
+      color: #00d2ff;
+      background: rgba(0, 210, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 10px;
+      width: fit-content;
+      margin-bottom: 30px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    /* Navegação Inferior */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #0f0f14;
+      border-top: 1px solid #1a1a24;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 100;
+    }
+
+    .nav-item {
+      color: #777;
+      text-decoration: none;
+      font-size: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-item.active {
+      color: #00d2ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Banner Topo com Imagem e Letras Azuis -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="badge">Módulo 01</div>
+      <h1 class="hero-title">ARTE DIGITAL</h1>
+      <p class="hero-subtitle">Criação e Inovação Visual</p>
+      <div class="hero-buttons">
+        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
+        <a href="#" class="btn-sec">Saiba mais →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Leitor do Vídeo YouTube -->
+  <div id="player" class="video-container">
+    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+  </div>
+
+  <!-- Lista de Aulas -->
+  <div class="section-container">
+    <div class="section-header">
+      <h2>Módulos</h2>
+      <span>12 aulas</span>
+    </div>
+
+    <div class="modules-grid">
+      <div class="card">
+        <div class="card-badge">Aula 1</div>
+        <div class="card-title">Introdução ao Curso</div>
+      </div>
+      <div class="card">
+        <div class="card-badge">Aula 2</div>
+        <div class="card-title">Criação e Design</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navegação Inferior -->
+  <div class="bottom-nav">
+    <a href="#" class="nav-item active">🏠<br>Início</a>
+    <a href="#" class="nav-item">📚<br>Aulas</a>
+    <a href="#" class="nav-item">💬<br>Grupos</a>
+    <a href="#" class="nav-item">🎧<br>Suporte</a>
+    <a href="#" class="nav-item">📷<br>Instagram</a>
+  </div>
+
+</body>
+</htm
