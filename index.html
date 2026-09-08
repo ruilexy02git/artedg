@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arte Digital - Área de Membros</title>
+  
+  <!-- Configurações WebApp / PWA para instalar no ecrã principal -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkFydGUgRGlnaXRhbCIsCiAgInNob3J0X25hbWUiIjogIkFydGVEaWdpdGFsIiwKICAic3RhcnRfdXJsIjogIi4vIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMDAwMDAwIiwKICAidGhlbWVfY29sb3IiIjogIiMwMDY2ZmYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJJTUdfMjkzMy5qcGVnIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9qcGVnIiwKICAgICAgInB1cnBvc2UiOiAiYW55IG1hc2thYmxlIgogICAgfQogIF0KfQ==">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Arte Digital">
+  <link rel="apple-touch-icon" href="IMG_2933.jpeg">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -13,12 +21,35 @@
       padding-bottom: 80px;
     }
 
+    /* Botão Instalar App no Topo */
+    .top-bar {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      z-index: 10;
+    }
+
+    .btn-install {
+      background: #0066ff;
+      color: #ffffff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+    }
+
     /* Banner Principal (Hero) */
     .hero {
       position: relative;
       width: 100%;
       height: 70vh;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 70%, #000000 100%),
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 70%, #000000 100%),
                   url('IMG_2933.jpeg') center/cover no-repeat;
       display: flex;
       align-items: flex-end;
@@ -32,25 +63,22 @@
 
     .badge {
       display: inline-block;
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      background: rgba(0, 102, 255, 0.25);
+      border: 1px solid #0066ff;
       color: #ffffff;
-      padding: 8px 16px;
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 13px;
-      font-weight: 500;
-      margin-bottom: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
     .hero-title {
       font-size: 32px;
       font-weight: 800;
       line-height: 1.15;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: #ffffff;
-      letter-spacing: -0.5px;
     }
 
     .hero-title span {
@@ -58,10 +86,9 @@
     }
 
     .hero-subtitle {
-      font-size: 14px;
-      color: #a1a1a1;
-      font-weight: 400;
-      margin-bottom: 24px;
+      font-size: 13px;
+      color: #aaaaaa;
+      margin-bottom: 20px;
       line-height: 1.4;
     }
 
@@ -73,30 +100,30 @@
     .btn-main {
       background-color: #ffffff;
       color: #000000;
-      padding: 14px 28px;
-      border-radius: 30px;
+      padding: 12px 26px;
+      border-radius: 25px;
       font-weight: 700;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .btn-sec {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 14px 22px;
-      border-radius: 30px;
+      padding: 12px 20px;
+      border-radius: 25px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
       border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Leitor do Vídeo */
+    /* Leitor do Vídeo com Capa antes do Play */
     .video-section {
       display: none;
       padding: 20px;
@@ -104,14 +131,49 @@
       margin: 0 auto;
     }
 
+    .video-poster {
+      position: relative;
+      width: 100%;
+      height: 240px;
+      background: url('IMG_2933.jpeg') center/cover no-repeat;
+      border-radius: 16px;
+      border: 1px solid #0066ff44;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .play-btn-overlay {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 102, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.6);
+    }
+
+    .play-btn-overlay::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 10px 0 10px 18px;
+      border-color: transparent transparent transparent #ffffff;
+      margin-left: 4px;
+    }
+
     .video-wrapper {
+      display: none;
       position: relative;
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: 16px;
-      border: 1px solid #1a1a1a;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      border: 1px solid #0066ff44;
     }
 
     .video-wrapper iframe {
@@ -123,65 +185,81 @@
       border: 0;
     }
 
-    /* Seção de Módulos */
+    /* Seção de Módulos estilo Netflix */
     .section-container {
-      padding: 30px 20px 10px;
+      padding: 25px 20px 10px;
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .section-header h2 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.5px;
     }
 
     .section-header span {
-      font-size: 13px;
-      color: #666666;
+      font-size: 12px;
+      color: #666;
     }
 
     .modules-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
 
-    .card {
-      background-color: #121212;
-      border-radius: 16px;
-      padding: 16px;
+    .card-thumb {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      background: url('IMG_2933.jpeg') center/cover no-repeat;
+      border-radius: 14px;
       border: 1px solid #1e1e1e;
-      min-height: 100px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      padding: 10px;
+      cursor: pointer;
     }
 
-    .card .card-badge {
-      font-size: 11px;
+    .card-thumb::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    }
+
+    .card-badge {
+      position: relative;
+      z-index: 2;
+      font-size: 10px;
       color: #ffffff;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 5px 12px;
-      border-radius: 15px;
+      background: rgba(0, 102, 255, 0.8);
+      padding: 4px 10px;
+      border-radius: 12px;
       width: fit-content;
-      font-weight: 500;
+      font-weight: 600;
+    }
+
+    .card-title-container {
+      position: relative;
+      z-index: 2;
     }
 
     .card-title {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #ffffff;
-      margin-top: 15px;
+      line-height: 1.3;
     }
 
-    /* Menu Inferior Estilo App */
+    /* Navegação Inferior */
     .bottom-nav {
       position: fixed;
       bottom: 0;
@@ -191,19 +269,18 @@
       border-top: 1px solid #1a1a1a;
       display: flex;
       justify-content: space-around;
-      padding: 12px 0 16px;
+      padding: 10px 0 14px;
       z-index: 100;
     }
 
     .nav-item {
-      color: #666666;
+      color: #666;
       text-decoration: none;
-      font-size: 11px;
+      font-size: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 6px;
-      font-weight: 500;
+      gap: 4px;
     }
 
     .nav-item svg {
@@ -219,6 +296,11 @@
 </head>
 <body>
 
+  <!-- Topo com Ação de Instalar -->
+  <div class="top-bar">
+    <button class="btn-install" onclick="installApp()">📥 Instalar app</button>
+  </div>
+
   <!-- Banner Topo -->
   <div class="hero">
     <div class="hero-content">
@@ -232,14 +314,17 @@
     </div>
   </div>
 
-  <!-- Leitor de Vídeo -->
+  <!-- Leitor de Vídeo com Capa antes do Play -->
   <div id="player" class="video-section">
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+    <div id="poster" class="video-poster" onclick="startVideo()">
+      <div class="play-btn-overlay"></div>
+    </div>
+    <div id="wrapper" class="video-wrapper">
+      <iframe id="iframe-video" src="" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- Catálogo de Módulos -->
+  <!-- Catálogo de Aulas -->
   <div class="section-container">
     <div class="section-header">
       <h2>Módulos</h2>
@@ -247,18 +332,23 @@
     </div>
 
     <div class="modules-grid">
-      <div class="card" onclick="openPlayer()">
+      <div class="card-thumb" onclick="openPlayer()">
         <div class="card-badge">Aula 1</div>
-        <div class="card-title">Introdução ao Curso</div>
+        <div class="card-title-container">
+          <div class="card-title">Como se cadastrar na mentoria →</div>
+        </div>
       </div>
-      <div class="card" onclick="openPlayer()">
+
+      <div class="card-thumb" onclick="openPlayer()">
         <div class="card-badge">Aula 2</div>
-        <div class="card-title">Criação e Design</div>
+        <div class="card-title-container">
+          <div class="card-title">Criação e Inovação Visual →</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Navegação Inferior -->
+  <!-- Menu Inferior -->
   <div class="bottom-nav">
     <a href="#" class="nav-item active">
       <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -269,7 +359,7 @@
       Aulas
     </a>
     <a href="#" class="nav-item">
-      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
       Grupos
     </a>
     <a href="#" class="nav-item">
@@ -283,10 +373,31 @@
   </div>
 
   <script>
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    function installApp() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+      } else {
+        alert("Para adicionar ao ecrã principal:\n\nNo iPhone (Safari): Toque no botão 'Partilhar' e selecione 'Adicionar ao Ecrã Principal'.\n\nNo Android (Chrome): Toque nos 3 pontos e selecione 'Instalar Aplicação'.");
+      }
+    }
+
     function openPlayer() {
       const player = document.getElementById('player');
       player.style.display = 'block';
       player.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function startVideo() {
+      document.getElementById('poster').style.display = 'none';
+      document.getElementById('wrapper').style.display = 'block';
+      document.getElementById('iframe-video').src = "https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1";
     }
   </script>
 
