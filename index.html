@@ -3,22 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arte Digital - Criação e Inovação Visual</title>
+  <title>Arte Digital - Área de Membros</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #0b0b0b;
+      background-color: #000000;
       color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding-bottom: 70px;
+      padding-bottom: 80px;
     }
 
-    /* Banner Principal com a Imagem do Repositório */
+    /* Banner Principal (Hero) */
     .hero {
       position: relative;
       width: 100%;
-      height: 55vh;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
+      height: 70vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 70%, #000000 100%),
                   url('IMG_2933.jpeg') center/cover no-repeat;
       display: flex;
       align-items: flex-end;
@@ -32,35 +32,37 @@
 
     .badge {
       display: inline-block;
-      background: rgba(0, 85, 255, 0.25);
-      border: 1px solid #0055ff;
-      color: #38b6ff;
-      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #ffffff;
+      padding: 8px 16px;
       border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    /* Título em Azul Degradê inspirado na Imagem */
     .hero-title {
       font-size: 32px;
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 6px;
-      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 10px;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title span {
+      color: #0066ff;
     }
 
     .hero-subtitle {
       font-size: 14px;
-      color: #cccccc;
-      font-weight: 500;
-      margin-bottom: 16px;
+      color: #a1a1a1;
+      font-weight: 400;
+      margin-bottom: 24px;
+      line-height: 1.4;
     }
 
     .hero-buttons {
@@ -69,148 +71,175 @@
     }
 
     .btn-main {
-      background: linear-gradient(90deg, #00d2ff, #0055ff);
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 25px;
+      background-color: #ffffff;
+      color: #000000;
+      padding: 14px 28px;
+      border-radius: 30px;
       font-weight: 700;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 14px;
-      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
+      font-size: 15px;
     }
 
     .btn-sec {
       background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
-      backdrop-filter: blur(5px);
-      padding: 12px 20px;
-      border-radius: 25px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 14px 22px;
+      border-radius: 30px;
       font-weight: 600;
       text-decoration: none;
-      font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
-    /* Area do Player de Vídeo */
-    .video-container {
+    /* Leitor do Vídeo */
+    .video-section {
       display: none;
       padding: 20px;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    .video-container iframe {
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      border: 2px solid #0055ff;
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid #1a1a1a;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
-    /* Módulos e Aulas */
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Seção de Módulos */
     .section-container {
-      padding: 25px 20px 10px;
+      padding: 30px 20px 10px;
     }
 
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .section-header h2 {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       color: #ffffff;
+      letter-spacing: -0.5px;
     }
 
     .section-header span {
-      font-size: 12px;
-      color: #888;
+      font-size: 13px;
+      color: #666666;
     }
 
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 12px;
     }
 
     .card {
-      background-color: #141419;
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid #0055ff33;
+      background-color: #121212;
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid #1e1e1e;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card .card-badge {
-      font-size: 10px;
-      color: #00d2ff;
-      background: rgba(0, 210, 255, 0.1);
-      padding: 4px 8px;
-      border-radius: 10px;
+      font-size: 11px;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px 12px;
+      border-radius: 15px;
       width: fit-content;
-      margin-bottom: 30px;
-      font-weight: 600;
+      font-weight: 500;
     }
 
     .card-title {
       font-size: 14px;
       font-weight: 600;
+      color: #ffffff;
+      margin-top: 15px;
     }
 
-    /* Navegação Inferior */
+    /* Menu Inferior Estilo App */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: #0f0f14;
-      border-top: 1px solid #1a1a24;
+      background-color: #000000;
+      border-top: 1px solid #1a1a1a;
       display: flex;
       justify-content: space-around;
-      padding: 10px 0;
+      padding: 12px 0 16px;
       z-index: 100;
     }
 
     .nav-item {
-      color: #777;
+      color: #666666;
       text-decoration: none;
-      font-size: 10px;
+      font-size: 11px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
+      font-weight: 500;
+    }
+
+    .nav-item svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
     }
 
     .nav-item.active {
-      color: #00d2ff;
+      color: #0066ff;
     }
   </style>
 </head>
 <body>
 
-  <!-- Banner Topo com Imagem e Letras Azuis -->
+  <!-- Banner Topo -->
   <div class="hero">
     <div class="hero-content">
       <div class="badge">Módulo 01</div>
-      <h1 class="hero-title">ARTE DIGITAL</h1>
-      <p class="hero-subtitle">Criação e Inovação Visual</p>
+      <h1 class="hero-title">Arte <span>Digital</span></h1>
+      <p class="hero-subtitle">A área de membros 100% focada em inovação e criação visual.</p>
       <div class="hero-buttons">
-        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
+        <a href="#player" class="btn-main" onclick="openPlayer()">► Assistir</a>
         <a href="#" class="btn-sec">Saiba mais →</a>
       </div>
     </div>
   </div>
 
-  <!-- Leitor do Vídeo YouTube -->
-  <div id="player" class="video-container">
-    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+  <!-- Leitor de Vídeo -->
+  <div id="player" class="video-section">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
+    </div>
   </div>
 
-  <!-- Lista de Aulas -->
+  <!-- Catálogo de Módulos -->
   <div class="section-container">
     <div class="section-header">
       <h2>Módulos</h2>
@@ -218,11 +247,11 @@
     </div>
 
     <div class="modules-grid">
-      <div class="card">
+      <div class="card" onclick="openPlayer()">
         <div class="card-badge">Aula 1</div>
         <div class="card-title">Introdução ao Curso</div>
       </div>
-      <div class="card">
+      <div class="card" onclick="openPlayer()">
         <div class="card-badge">Aula 2</div>
         <div class="card-title">Criação e Design</div>
       </div>
@@ -231,496 +260,35 @@
 
   <!-- Navegação Inferior -->
   <div class="bottom-nav">
-    <a href="#" class="nav-item active">🏠<br>Início</a>
-    <a href="#" class="nav-item">📚<br>Aulas</a>
-    <a href="#" class="nav-item">💬<br>Grupos</a>
-    <a href="#" class="nav-item">🎧<br>Suporte</a>
-    <a href="#" class="nav-item">📷<br>Instagram</a>
+    <a href="#" class="nav-item active">
+      <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      Início
+    </a>
+    <a href="#" class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+      Aulas
+    </a>
+    <a href="#" class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+      Grupos
+    </a>
+    <a href="#" class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M12 1c-4.97 0-9 4.03-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7c0-4.97-4.03-9-9-9z"/></svg>
+      Suporte
+    </a>
+    <a href="#" class="nav-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
   </div>
+
+  <script>
+    function openPlayer() {
+      const player = document.getElementById('player');
+      player.style.display = 'block';
+      player.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arte Digital - Criação e Inovação Visual</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: #0b0b0b;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding-bottom: 70px;
-    }
-
-    /* Banner Principal com a Imagem do Repositório */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 55vh;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
-                  url('IMG_2933.jpeg') center/cover no-repeat;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-    }
-
-    .hero-content {
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(0, 85, 255, 0.25);
-      border: 1px solid #0055ff;
-      color: #38b6ff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    /* Título em Azul Degradê inspirado na Imagem */
-    .hero-title {
-      font-size: 32px;
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 6px;
-      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: #cccccc;
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-    }
-
-    .btn-main {
-      background: linear-gradient(90deg, #00d2ff, #0055ff);
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
-    }
-
-    .btn-sec {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      backdrop-filter: blur(5px);
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    /* Area do Player de Vídeo */
-    .video-container {
-      display: none;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      border: 2px solid #0055ff;
-    }
-
-    /* Módulos e Aulas */
-    .section-container {
-      padding: 25px 20px 10px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .section-header h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .section-header span {
-      font-size: 12px;
-      color: #888;
-    }
-
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-
-    .card {
-      background-color: #141419;
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid #0055ff33;
-    }
-
-    .card .card-badge {
-      font-size: 10px;
-      color: #00d2ff;
-      background: rgba(0, 210, 255, 0.1);
-      padding: 4px 8px;
-      border-radius: 10px;
-      width: fit-content;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* Navegação Inferior */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #0f0f14;
-      border-top: 1px solid #1a1a24;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 100;
-    }
-
-    .nav-item {
-      color: #777;
-      text-decoration: none;
-      font-size: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-item.active {
-      color: #00d2ff;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Banner Topo com Imagem e Letras Azuis -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="badge">Módulo 01</div>
-      <h1 class="hero-title">ARTE DIGITAL</h1>
-      <p class="hero-subtitle">Criação e Inovação Visual</p>
-      <div class="hero-buttons">
-        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
-        <a href="#" class="btn-sec">Saiba mais →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Leitor do Vídeo YouTube -->
-  <div id="player" class="video-container">
-    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
-  </div>
-
-  <!-- Lista de Aulas -->
-  <div class="section-container">
-    <div class="section-header">
-      <h2>Módulos</h2>
-      <span>12 aulas</span>
-    </div>
-
-    <div class="modules-grid">
-      <div class="card">
-        <div class="card-badge">Aula 1</div>
-        <div class="card-title">Introdução ao Curso</div>
-      </div>
-      <div class="card">
-        <div class="card-badge">Aula 2</div>
-        <div class="card-title">Criação e Design</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Navegação Inferior -->
-  <div class="bottom-nav">
-    <a href="#" class="nav-item active">🏠<br>Início</a>
-    <a href="#" class="nav-item">📚<br>Aulas</a>
-    <a href="#" class="nav-item">💬<br>Grupos</a>
-    <a href="#" class="nav-item">🎧<br>Suporte</a>
-    <a href="#" class="nav-item">📷<br>Instagram</a>
-  </div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Arte Digital - Criação e Inovação Visual</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: #0b0b0b;
-      color: #ffffff;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      padding-bottom: 70px;
-    }
-
-    /* Banner Principal com a Imagem do Repositório */
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 55vh;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.2), #0b0b0b),
-                  url('IMG_2933.jpeg') center/cover no-repeat;
-      display: flex;
-      align-items: flex-end;
-      padding: 20px;
-    }
-
-    .hero-content {
-      width: 100%;
-      max-width: 600px;
-    }
-
-    .badge {
-      display: inline-block;
-      background: rgba(0, 85, 255, 0.25);
-      border: 1px solid #0055ff;
-      color: #38b6ff;
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    /* Título em Azul Degradê inspirado na Imagem */
-    .hero-title {
-      font-size: 32px;
-      font-weight: 900;
-      line-height: 1.1;
-      margin-bottom: 6px;
-      background: linear-gradient(180deg, #00d2ff 0%, #0055ff 50%, #002288 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0px 4px 10px rgba(0, 85, 255, 0.3);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: #cccccc;
-      font-weight: 500;
-      margin-bottom: 16px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-    }
-
-    .btn-main {
-      background: linear-gradient(90deg, #00d2ff, #0055ff);
-      color: #ffffff;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-weight: 700;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 14px;
-      box-shadow: 0 4px 15px rgba(0, 85, 255, 0.4);
-    }
-
-    .btn-sec {
-      background: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      backdrop-filter: blur(5px);
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    /* Area do Player de Vídeo */
-    .video-container {
-      display: none;
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .video-container iframe {
-      width: 100%;
-      height: 250px;
-      border-radius: 12px;
-      border: 2px solid #0055ff;
-    }
-
-    /* Módulos e Aulas */
-    .section-container {
-      padding: 25px 20px 10px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .section-header h2 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .section-header span {
-      font-size: 12px;
-      color: #888;
-    }
-
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-    }
-
-    .card {
-      background-color: #141419;
-      border-radius: 12px;
-      padding: 14px;
-      border: 1px solid #0055ff33;
-    }
-
-    .card .card-badge {
-      font-size: 10px;
-      color: #00d2ff;
-      background: rgba(0, 210, 255, 0.1);
-      padding: 4px 8px;
-      border-radius: 10px;
-      width: fit-content;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    .card-title {
-      font-size: 14px;
-      font-weight: 600;
-    }
-
-    /* Navegação Inferior */
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #0f0f14;
-      border-top: 1px solid #1a1a24;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-      z-index: 100;
-    }
-
-    .nav-item {
-      color: #777;
-      text-decoration: none;
-      font-size: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .nav-item.active {
-      color: #00d2ff;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Banner Topo com Imagem e Letras Azuis -->
-  <div class="hero">
-    <div class="hero-content">
-      <div class="badge">Módulo 01</div>
-      <h1 class="hero-title">ARTE DIGITAL</h1>
-      <p class="hero-subtitle">Criação e Inovação Visual</p>
-      <div class="hero-buttons">
-        <a href="#player" class="btn-main" onclick="document.getElementById('player').style.display='block'">► Assistir</a>
-        <a href="#" class="btn-sec">Saiba mais →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Leitor do Vídeo YouTube -->
-  <div id="player" class="video-container">
-    <iframe src="https://www.youtube.com/embed/La3A7_GhF3w" allowfullscreen></iframe>
-  </div>
-
-  <!-- Lista de Aulas -->
-  <div class="section-container">
-    <div class="section-header">
-      <h2>Módulos</h2>
-      <span>12 aulas</span>
-    </div>
-
-    <div class="modules-grid">
-      <div class="card">
-        <div class="card-badge">Aula 1</div>
-        <div class="card-title">Introdução ao Curso</div>
-      </div>
-      <div class="card">
-        <div class="card-badge">Aula 2</div>
-        <div class="card-title">Criação e Design</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Navegação Inferior -->
-  <div class="bottom-nav">
-    <a href="#" class="nav-item active">🏠<br>Início</a>
-    <a href="#" class="nav-item">📚<br>Aulas</a>
-    <a href="#" class="nav-item">💬<br>Grupos</a>
-    <a href="#" class="nav-item">🎧<br>Suporte</a>
-    <a href="#" class="nav-item">📷<br>Instagram</a>
-  </div>
-
-</body>
-</htm
