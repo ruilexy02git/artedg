@@ -1,25 +1,1365 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Área de membros Arte Digital">
-  <title>Área de membros | Arte Digital</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Área de membros Arte Digital" />
+  <title>Arte Digital | Área de Membros</title>
   <style>
-    :root{--blue:#0066ff;--bg:#000;--panel:#101010;--line:#222;--muted:#999;--success:#35c978;--warning:#f2b84b;--danger:#ed7070}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;min-height:100vh}button,input{font:inherit}button{cursor:pointer}.shell{width:min(1120px,100% - 32px);margin:auto}.topbar{border-bottom:1px solid var(--line);padding:18px 0;position:sticky;top:0;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);z-index:5}.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{color:#fff;text-decoration:none;font-size:20px;font-weight:800}.brand span{color:var(--blue)}.nav{display:flex;align-items:center;gap:8px}.nav button,.link-btn{background:none;border:0;color:#aaa;padding:10px;border-radius:8px}.nav button:hover,.link-btn:hover{color:#fff;background:#171717}.main{padding:42px 0 80px}.view{display:none}.view.active{display:block}.hero{padding:18px 0 30px}.eyebrow{color:var(--blue);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.1em}.title{font-size:clamp(28px,5vw,46px);line-height:1.1;margin:8px 0 12px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}.stat{min-height:120px}.stat strong{display:block;font-size:30px;margin-top:12px}.progress{height:8px;background:#252525;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:var(--blue);border-radius:inherit}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.primary,.secondary,.danger{border:0;border-radius:10px;padding:12px 18px;font-weight:700}.primary{background:#fff;color:#000}.secondary{background:#1d1d1d;color:#fff;border:1px solid #333}.danger{background:#321919;color:#ffb0b0}.auth{max-width:440px;margin:8vh auto}.form{display:grid;gap:14px;margin-top:22px}label{display:grid;gap:7px;color:#ccc;font-size:14px}input{width:100%;background:#0b0b0b;border:1px solid #333;border-radius:9px;padding:13px;color:#fff;outline:none}input:focus{border-color:var(--blue)}.notice{padding:13px 15px;border-radius:10px;background:#151515;border:1px solid #292929;color:#ccc;margin-top:15px}.notice.error{border-color:#633333;color:#ffb0b0}.notice.success{border-color:#285b42;color:#a8efc6}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:650px}.table th,.table td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--line);font-size:14px}.badge{display:inline-block;border-radius:99px;padding:5px 9px;background:#252525;color:#bbb;font-size:12px}.badge.active{background:#123d29;color:#79e5a6}.badge.pending{background:#403215;color:#f4ca74}.badge.expired{background:#411b1b;color:#ff9d9d}.lesson{display:flex;justify-content:space-between;align-items:center;gap:16px}.lesson h3{margin:0 0 6px;font-size:16px}.lesson p{margin:0;color:var(--muted);font-size:13px}.whatsapp{position:fixed;right:20px;bottom:22px;background:#20b965;color:#fff;text-decoration:none;padding:12px 16px;border-radius:99px;font-weight:700;box-shadow:0 8px 24px #000}.empty{text-align:center;padding:45px 20px}.small{font-size:13px}@media(max-width:720px){.shell{width:min(100% - 24px,1120px)}.topbar{position:relative}.nav{gap:0}.nav button{font-size:12px;padding:8px}.grid{grid-template-columns:1fr}.card{padding:17px}.lesson{align-items:flex-start;flex-direction:column}.main{padding-top:24px}.whatsapp{right:12px;bottom:14px;font-size:13px}}
+    :root {
+      --bg: #050505;
+      --bg-soft: #0f0f12;
+      --panel: #121417;
+      --panel-alt: #181b20;
+      --line: #242a32;
+      --text: #f3f6fb;
+      --muted: #9aa3ad;
+      --blue: #2d7ef7;
+      --blue-soft: rgba(45, 126, 247, 0.14);
+      --white: #ffffff;
+      --green: #2ed573;
+      --amber: #f5b942;
+      --red: #ff6b6b;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.32);
+      --radius: 18px;
+      --safe: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    img { max-width: 100%; display: block; }
+
+    .shell {
+      width: min(calc(100% - 28px), var(--safe));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(5, 5, 5, 0.9);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: -0.04em;
+    }
+
+    .brand span { color: var(--blue); }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav button,
+    .button,
+    .link-button,
+    .chip {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav button:hover,
+    .button:hover,
+    .link-button:hover,
+    .chip:hover {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-1px);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .button.primary {
+      background: var(--white);
+      color: var(--bg);
+      font-weight: 800;
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .button.ghost {
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    .button.danger {
+      background: rgba(255, 107, 107, 0.08);
+      color: #ffc7c7;
+      border: 1px solid rgba(255, 107, 107, 0.3);
+    }
+
+    .button.block {
+      width: 100%;
+    }
+
+    .main {
+      padding: 28px 0 100px;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .hero {
+      padding: 20px 0 14px;
+    }
+
+    .eyebrow {
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      margin: 0 0 12px;
+      letter-spacing: -0.05em;
+    }
+
+    .title.small {
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .auth-shell {
+      max-width: 460px;
+      margin: 8vh auto 0;
+    }
+
+    .form {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    input {
+      width: 100%;
+      min-height: 48px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      padding: 0 14px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: rgba(45, 126, 247, 0.9);
+      box-shadow: 0 0 0 4px rgba(45, 126, 247, 0.12);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .note.success {
+      border-color: rgba(46, 213, 115, 0.35);
+      background: rgba(46, 213, 115, 0.08);
+      color: #d9fce7;
+    }
+
+    .note.error {
+      border-color: rgba(255, 107, 107, 0.35);
+      background: rgba(255, 107, 107, 0.07);
+      color: #ffd9d9;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      min-height: 160px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .stat-value {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .progress {
+      height: 10px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+
+    .progress > span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #3d8cff, #7bb4ff);
+    }
+
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .lesson-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .lesson-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.08rem;
+    }
+
+    .lesson-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 110px;
+      padding: 9px 12px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .chip.active { background: rgba(46,213,115,0.12); border-color: rgba(46,213,115,0.28); color: #d3f9df; }
+    .chip.pending { background: rgba(245,185,66,0.12); border-color: rgba(245,185,66,0.28); color: #fbe7b9; }
+    .chip.expired { background: rgba(255,107,107,0.12); border-color: rgba(255,107,107,0.28); color: #ffd0d0; }
+    .chip.none { background: rgba(255,255,255,0.02); color: var(--muted); }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 780px;
+      border-collapse: collapse;
+      margin-top: 18px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 14px 10px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 0.94rem;
+    }
+
+    th {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .admin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .admin-actions button {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+    }
+
+    .access-banner {
+      margin: 12px 0 20px;
+      border: 1px solid rgba(45, 126, 247, 0.35);
+      background: rgba(45, 126, 247, 0.08);
+      color: #dbe9ff;
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .hidden { display: none; }
+
+    .whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      background: #20b95a;
+      color: #04130a;
+      border-radius: 999px;
+      padding: 14px 18px;
+      font-weight: 800;
+      box-shadow: 0 16px 40px rgba(32, 185, 90, 0.35);
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--muted);
+      padding: 40px 16px;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+    }
+
+    @media (max-width: 760px) {
+      .topbar-inner {
+        min-height: 64px;
+      }
+
+      .nav {
+        gap: 6px;
+      }
+
+      .nav button,
+      .button,
+      .link-button,
+      .chip {
+        padding: 9px 10px;
+        font-size: 0.86rem;
+      }
+
+      .grid,
+      .lesson-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .lesson-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .whatsapp {
+        right: 12px;
+        bottom: 12px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header class="topbar"><div class="shell topbar-inner"><a class="brand" href="index.html">Arte <span>Digital</span></a><nav class="nav" id="nav"></nav></div></header>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a href="index.html" class="brand">Arte <span>Digital</span></a>
+      <nav id="nav" class="nav" aria-label="Navegação principal"></nav>
+    </div>
+  </header>
+
   <main class="shell main">
-    <section id="auth-view" class="view active"><div class="auth card"><div class="eyebrow">Área de membros</div><h1 class="title" id="auth-title">Entrar na tua conta</h1><p class="muted" id="auth-subtitle">Continua a aprender no teu ritmo.</p><div id="auth-message"></div><form class="form" id="auth-form"><div id="name-field" style="display:none"><label>Nome<input id="name" autocomplete="name"></label></div><label>E-mail<input id="email" type="email" required autocomplete="email"></label><label>Senha<input id="password" type="password" required minlength="8" autocomplete="current-password"></label><div id="confirm-field" style="display:none"><label>Confirmar senha<input id="confirm" type="password" minlength="8" autocomplete="new-password"></label></div><button class="primary" id="auth-submit">Entrar</button></form><div class="actions"><button class="link-btn" id="toggle-auth">Ainda não tenho conta</button><button class="link-btn" id="forgot">Esqueci minha senha</button></div></div></section>
-    <section id="dashboard-view" class="view"><div class="hero"><div class="eyebrow">Dashboard</div><h1 class="title">Olá, <span id="user-name">aluno</span> 👋</h1><p class="muted">Continue de onde paraste.</p></div><div class="grid"><div class="card stat"><span class="muted">Progresso geral</span><strong id="overall">0%</strong><div class="progress"><i id="overall-bar" style="width:0%"></i></div></div><div class="card stat"><span class="muted">Aulas concluídas</span><strong id="completed">0</strong><span class="small muted" id="remaining">0 aulas restantes</span></div><div class="card stat"><span class="muted">Estado de acesso</span><strong id="access-status">—</strong><span class="small muted">Arte Digital</span></div></div><div class="card" style="margin-top:16px"><div class="eyebrow">Última aula assistida</div><h2 id="last-lesson">Ainda não começaste</h2><p class="muted" id="last-description">Escolhe uma aula para começar a tua jornada.</p><div class="actions"><button class="primary" id="continue-btn">Continuar aprendendo</button><button class="secondary" data-go="course">Ver curso</button></div></div></section>
-    <section id="course-view" class="view"><div class="hero"><div class="eyebrow">Curso</div><h1 class="title">Arte Digital</h1><p class="muted">Aulas organizadas para desenvolver a tua criação visual.</p></div><div id="access-banner"></div><div id="lessons" class="grid"></div></section>
-    <section id="lesson-view" class="view"><button class="link-btn" data-go="course">← Voltar ao curso</button><div class="hero"><div class="eyebrow" id="lesson-module">Aula</div><h1 class="title" id="lesson-title">—</h1><p class="muted" id="lesson-description">—</p></div><div id="lesson-player" class="card empty"><p class="muted">O vídeo desta aula será disponibilizado de forma protegida após a configuração do armazenamento.</p></div><div class="actions"><button class="primary" id="complete-btn">Marcar como concluída</button></div></section>
-    <section id="profile-view" class="view"><div class="hero"><div class="eyebrow">Conta</div><h1 class="title">Meu perfil</h1></div><div class="card"><form class="form" id="profile-form"><label>Nome<input id="profile-name" required></label><label>E-mail<input id="profile-email" type="email" disabled></label><label>Avatar URL (opcional)<input id="profile-avatar" type="url"></label><p class="muted small" id="created-at"></p><button class="primary">Guardar alterações</button></form><hr style="border-color:#222;margin:28px 0"><h2>Alterar senha</h2><form class="form" id="password-form"><label>Nova senha<input id="new-password" type="password" minlength="8" required></label><button class="secondary">Atualizar senha</button></form><div id="profile-message"></div></div></section>
-    <section id="admin-view" class="view"><div class="hero"><div class="eyebrow">Administração</div><h1 class="title">Alunos</h1><p class="muted">Área restrita a administradores.</p></div><div class="card table-wrap"><table class="table"><thead><tr><th>Aluno</th><th>E-mail</th><th>Acesso</th><th>Curso</th><th>Progresso</th><th>Cadastro</th></tr></thead><tbody id="admin-table"></tbody></table></div></section>
-    <section id="denied-view" class="view"><div class="auth card empty"><div class="eyebrow">Acesso necessário</div><h1 class="title">Este curso ainda não está disponível para a tua conta.</h1><p class="muted">Ativa o teu acesso para começar a assistir às aulas.</p><div class="actions" style="justify-content:center"><a class="primary" id="buy-link" href="#">Adquirir acesso</a><a class="secondary" id="support-link" target="_blank" rel="noopener">Já fiz o pagamento? Falar com suporte</a></div></div></section>
-  </main><a class="whatsapp" id="whatsapp" target="_blank" rel="noopener">WhatsApp</a>
-  <script src="members.js"></script>
-</body></html>
+    <section id="auth-view" class="view active">
+      <div class="auth-shell">
+        <div class="card">
+          <div class="eyebrow">Área de Membros</div>
+          <h1 id="auth-title" class="title small">Entrar na tua conta</h1>
+          <p id="auth-subtitle" class="muted">Continua a aprender no teu ritmo.</p>
+
+          <div id="auth-message"></div>
+
+          <form id="auth-form" class="form">
+            <label id="name-field" class="hidden">
+              Nome
+              <input id="signup-name" type="text" maxlength="80" placeholder="Seu nome" autocomplete="name" />
+            </label>
+
+            <label>
+              E-mail
+              <input id="login-email" type="email" required autocomplete="email" placeholder="seu@email.com" />
+            </label>
+
+            <label>
+              Senha
+              <input id="login-password" type="password" required minlength="8" autocomplete="current-password" placeholder="••••••••" />
+            </label>
+
+            <label id="confirm-field" class="hidden">
+              Confirmar senha
+              <input id="confirm-password" type="password" minlength="8" autocomplete="new-password" placeholder="Repita a senha" />
+            </label>
+
+            <button id="auth-submit" class="button primary block" type="submit">Entrar</button>
+          </form>
+
+          <div class="form-actions" style="margin-top: 16px;">
+            <button id="toggle-auth" class="button secondary" type="button">Ainda não tenho conta</button>
+            <button id="forgot-password" class="button ghost" type="button">Esqueci minha senha</button>
+          </div>
+
+          <div id="recovery-box" class="note hidden">
+            <strong>Redefinir senha</strong>
+            <p class="muted">Insira o e-mail e escolha uma nova senha.</p>
+            <form id="recovery-form" class="form">
+              <label>
+                E-mail
+                <input id="recovery-email" type="email" required placeholder="seu@email.com" />
+              </label>
+              <label>
+                Nova senha
+                <input id="recovery-password" type="password" required minlength="8" placeholder="Nova senha" />
+              </label>
+              <button type="submit" class="button primary block">Atualizar senha</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dashboard-view" class="view">
+      <div class="hero">
+        <div class="eyebrow">Dashboard</div>
+        <h1 class="title">Olá, <span id="dashboard-name">aluno</span> 👋</h1>
+        <p class="muted">Continue de onde paraste.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card stat">
+          <span class="stat-label">Progresso geral</span>
+          <span id="overall-progress" class="stat-value">0%</span>
+          <div class="progress"><span id="overall-bar" style="width: 0%;"></span></div>
+        </div>
+
+        <div class="card stat">
+          <span class="stat-label">Aulas concluídas</span>
+          <span id="completed-count" class="stat-value">0</span>
+          <span id="remaining-count" class="muted">0 aulas restantes</span>
+        </div>
+
+        <div class="card stat">
+          <span class="stat-label">Estado de acesso</span>
+          <span id="status-pill" class="stat-value">Sem acesso</span>
+          <span class="muted">Curso Arte Digital</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top: 18px;">
+        <div class="eyebrow">Última aula assistida</div>
+        <h2 id="last-lesson-title" style="margin: 0 0 8px;">Ainda não começaste</h2>
+        <p id="last-lesson-description" class="muted">Escolhe uma aula para começar a tua jornada.</p>
+        <div class="form-actions" style="margin-top: 18px;">
+          <button id="continue-learning" class="button primary" type="button">Continuar aprendendo</button>
+          <button class="button secondary" type="button" data-go="course">Ver curso</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="course-view" class="view">
+      <div class="hero">
+        <div class="eyebrow">Curso</div>
+        <h1 class="title">Arte Digital</h1>
+        <p class="muted">Curso · Módulos · Aulas</p>
+      </div>
+
+      <div id="access-banner" class="access-banner hidden"></div>
+      <div id="lessons-list" class="lesson-grid"></div>
+    </section>
+
+    <section id="lesson-view" class="view">
+      <div class="hero">
+        <button class="button ghost" data-go="course" type="button">← Voltar</button>
+        <div class="eyebrow" id="lesson-module">Aula</div>
+        <h1 id="lesson-title" class="title small">Carregando…</h1>
+        <p id="lesson-description" class="muted">Carregando descrição…</p>
+      </div>
+
+      <div class="card">
+        <div id="video-frame" class="empty-state">
+          O conteúdo protegido desta aula está preparado para integração com vídeo externo seguro ou armazenamento de mídia. A URL pública do vídeo só deve ser entregue após validação de acesso no backend.
+        </div>
+      </div>
+
+      <div class="form-actions" style="margin-top: 20px;">
+        <button id="mark-complete" class="button primary" type="button">Marcar como concluída</button>
+      </div>
+    </section>
+
+    <section id="profile-view" class="view">
+      <div class="hero">
+        <div class="eyebrow">Conta</div>
+        <h1 class="title">Meu Perfil</h1>
+      </div>
+
+      <div class="card stack">
+        <form id="profile-form" class="form">
+          <label>
+            Nome
+            <input id="profile-name" type="text" required />
+          </label>
+
+          <label>
+            E-mail
+            <input id="profile-email" type="email" disabled />
+          </label>
+
+          <label>
+            Foto/avatar (URL opcional)
+            <input id="profile-avatar" type="url" placeholder="https://..." />
+          </label>
+
+          <div class="muted" id="profile-created-at"></div>
+
+          <button class="button primary" type="submit">Guardar alterações</button>
+        </form>
+
+        <div>
+          <h3>Alteração de senha</h3>
+          <form id="change-password-form" class="form">
+            <label>
+              Nova senha
+              <input id="new-password" type="password" minlength="8" placeholder="Mínimo 8 caracteres" required />
+            </label>
+            <button class="button secondary" type="submit">Atualizar senha</button>
+          </form>
+        </div>
+
+        <div id="profile-message"></div>
+      </div>
+    </section>
+
+    <section id="admin-view" class="view">
+      <div class="hero">
+        <div class="eyebrow">Administração</div>
+        <h1 class="title">Alunos</h1>
+      </div>
+
+      <div class="card table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Aluno</th>
+              <th>E-mail</th>
+              <th>Status</th>
+              <th>Curso</th>
+              <th>Progresso</th>
+              <th>Data de cadastro</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="denied-view" class="view">
+      <div class="auth-shell">
+        <div class="card text-center" style="text-align: center;">
+          <div class="eyebrow">Acesso necessário</div>
+          <h1 class="title small">Este curso ainda não está disponível para a tua conta.</h1>
+          <p class="muted">Para continuar, é necessário adquirir ou ativar o acesso ao curso.</p>
+          <div class="form-actions" style="justify-content: center; margin-top: 18px;">
+            <a id="purchase-link" class="button primary" href="#" target="_blank" rel="noopener">Adquirir acesso</a>
+            <a id="support-link" class="button secondary" href="#" target="_blank" rel="noopener">Já fiz o pagamento? Falar com suporte</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a id="whatsapp-button" class="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+
+  <script>
+    const APP_CONFIG = Object.assign({
+      whatsappNumber: '',
+      purchaseUrl: '',
+      supportMessage: 'Olá, fiz o pagamento e preciso de ajuda para ativar o acesso ao curso Arte Digital.'
+    }, window.ARTEDG_CONFIG || {});
+
+    const STORAGE_KEYS = {
+      users: 'artedg_users',
+      currentUser: 'artedg_current_user',
+      progress: 'artedg_progress'
+    };
+
+    const accessLabels = {
+      none: 'Sem acesso',
+      pending: 'Acesso pendente',
+      active: 'Acesso ativo',
+      expired: 'Acesso expirado'
+    };
+
+    const courseData = {
+      id: 'course-arte-digital',
+      title: 'Arte Digital',
+      modules: [
+        {
+          id: 'module-1',
+          title: 'Fundamentos',
+          lessons: [
+            { id: 'lesson-1', number: 1, title: 'Como se cadastrar na mentora', description: 'Primeiros passos e preparação da sua conta.', duration: '08:30', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-2', number: 2, title: 'Criação e inovação visual', description: 'Estratégias para gerar ideias de forma criativa.', duration: '11:40', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-3', number: 3, title: 'Branding digital', description: 'Como conectar identidade visual com valor percebido.', duration: '09:20', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-4', number: 4, title: 'Estrutura do portfólio', description: 'Organização e posicionamento do seu portfólio.', duration: '12:10', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' }
+          ]
+        },
+        {
+          id: 'module-2',
+          title: 'Produção',
+          lessons: [
+            { id: 'lesson-5', number: 5, title: 'Gestão de conteúdo', description: 'Planeamento e consistência na produção.', duration: '10:55', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-6', number: 6, title: 'Workflow criativo', description: 'Como preparar a execução de cada projeto.', duration: '13:00', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-7', number: 7, title: 'Estratégia visual', description: 'Direção artística para converter seguidores em clientes.', duration: '12:45', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-8', number: 8, title: 'Edição e refinamento', description: 'Ajustes finos para impacto visual e clareza.', duration: '14:20', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' }
+          ]
+        },
+        {
+          id: 'module-3',
+          title: 'Resultados',
+          lessons: [
+            { id: 'lesson-9', number: 9, title: 'Oferta e posicionamento', description: 'Como comunicar serviços com clareza competitiva.', duration: '11:15', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-10', number: 10, title: 'Sistema de atracção', description: 'Estruturas para gerar oportunidades reais.', duration: '10:30', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-11', number: 11, title: 'Escala e processos', description: 'Como organizar o teu trabalho para crescer.', duration: '13:35', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' },
+            { id: 'lesson-12', number: 12, title: 'Lançamento e otimização', description: 'Fechamento do processo e melhoria contínua.', duration: '15:05', videoUrl: 'https://www.youtube.com/embed/La3A7_GhF3w?autoplay=1' }
+          ]
+        }
+      ]
+    };
+
+    const state = {
+      currentUser: null,
+      selectedLesson: null,
+      authMode: 'login',
+      shouldShowRecovery: false
+    };
+
+    function avoidXSS(value) {
+      return String(value || '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[char] || char));
+    }
+
+    function formatDate(dateValue) {
+      if (!dateValue) return '—';
+      const date = new Date(dateValue);
+      if (Number.isNaN(date.getTime())) return '—';
+      return date.toLocaleDateString('pt-PT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    function hashValue(value) {
+      let hash = 0;
+      for (let i = 0; i < value.length; i++) {
+        hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
+      }
+      return hash.toString(16);
+    }
+
+    function getUsers() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.users) || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem(STORAGE_KEYS.users, JSON.stringify(users));
+    }
+
+    function getProgress() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.progress) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function saveProgress(progressMap) {
+      localStorage.setItem(STORAGE_KEYS.progress, JSON.stringify(progressMap));
+    }
+
+    function getCurrentUser() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEYS.currentUser) || 'null');
+      } catch {
+        return null;
+      }
+    }
+
+    function setCurrentUser(user) {
+      if (!user) {
+        localStorage.removeItem(STORAGE_KEYS.currentUser);
+        state.currentUser = null;
+        return;
+      }
+      localStorage.setItem(STORAGE_KEYS.currentUser, JSON.stringify(user));
+      state.currentUser = user;
+    }
+
+    function setAuthMessage(message, type = '') {
+      const target = document.getElementById('auth-message');
+      target.innerHTML = message ? `<div class="note ${type}">${avoidXSS(message)}</div>` : '';
+    }
+
+    function setProfileMessage(message, type = '') {
+      const target = document.getElementById('profile-message');
+      target.innerHTML = message ? `<div class="note ${type}">${avoidXSS(message)}</div>` : '';
+    }
+
+    function updateAuthUI() {
+      const isLogin = state.authMode === 'login';
+      const title = document.getElementById('auth-title');
+      const subtitle = document.getElementById('auth-subtitle');
+      const submit = document.getElementById('auth-submit');
+      const toggle = document.getElementById('toggle-auth');
+      const recovery = document.getElementById('recovery-box');
+
+      document.getElementById('name-field').classList.toggle('hidden', isLogin);
+      document.getElementById('confirm-field').classList.toggle('hidden', isLogin);
+      title.textContent = isLogin ? 'Entrar na tua conta' : 'Criar conta';
+      subtitle.textContent = isLogin ? 'Continua a aprender no teu ritmo.' : 'Cria a tua conta para acompanhar o teu progresso.';
+      submit.textContent = isLogin ? 'Entrar' : 'Criar conta';
+      toggle.textContent = isLogin ? 'Ainda não tenho conta' : 'Já tenho conta';
+      document.getElementById('forgot-password').style.display = isLogin ? 'inline-flex' : 'none';
+      recovery.classList.add('hidden');
+      state.shouldShowRecovery = false;
+    }
+
+    function renderNav() {
+      const nav = document.getElementById('nav');
+      if (!state.currentUser) {
+        nav.innerHTML = '';
+        return;
+      }
+
+      const isAdmin = state.currentUser.role === 'admin';
+      nav.innerHTML = `
+        <button type="button" data-go="dashboard">Dashboard</button>
+        <button type="button" data-go="course">Curso</button>
+        <button type="button" data-go="profile">Meu perfil</button>
+        ${isAdmin ? '<button type="button" data-go="admin">Admin</button>' : ''}
+        <button type="button" id="logout-button">Sair</button>
+      `;
+
+      document.getElementById('logout-button').addEventListener('click', logoutUser);
+      nav.querySelectorAll('[data-go]').forEach(button => {
+        button.addEventListener('click', () => {
+          const target = button.getAttribute('data-go');
+          if (target === 'admin' && state.currentUser.role !== 'admin') {
+            showView('denied');
+            return;
+          }
+          showView(target);
+        });
+      });
+    }
+
+    function getUserProgressMap(userId) {
+      const all = getProgress();
+      return all[userId] || {};
+    }
+
+    function saveUserProgressMap(userId, progressMap) {
+      const all = getProgress();
+      all[userId] = progressMap;
+      saveProgress(all);
+    }
+
+    function getLessonProgress(lessonId) {
+      const map = getUserProgressMap(state.currentUser.id);
+      return map[lessonId] || { completed: false, lastWatched: false };
+    }
+
+    function setLessonProgress(lessonId, values) {
+      const map = getUserProgressMap(state.currentUser.id);
+      const current = map[lessonId] || { completed: false, lastWatched: false };
+      map[lessonId] = { ...current, ...values };
+      saveUserProgressMap(state.currentUser.id, map);
+    }
+
+    function getAllLessons() {
+      return courseData.modules.flatMap(module => module.lessons.map(lesson => ({ ...lesson, moduleTitle: module.title })));
+    }
+
+    function calculateProgress() {
+      const allLessons = getAllLessons();
+      const map = getUserProgressMap(state.currentUser.id);
+      const completed = allLessons.filter(lesson => map[lesson.id]?.completed).length;
+      const total = allLessons.length || 1;
+      const percent = Math.round((completed / total) * 100);
+      return { completed, total, percent };
+    }
+
+    function renderDashboard() {
+      const user = state.currentUser;
+      if (!user) return;
+
+      const name = user.name || user.email.split('@')[0];
+      document.getElementById('dashboard-name').textContent = name;
+
+      const progress = calculateProgress();
+      document.getElementById('overall-progress').textContent = `${progress.percent}%`;
+      document.getElementById('overall-bar').style.width = `${progress.percent}%`;
+      document.getElementById('completed-count').textContent = progress.completed;
+      document.getElementById('remaining-count').textContent = `${Math.max(progress.total - progress.completed, 0)} aulas restantes`;
+
+      const status = accessLabels[user.accessStatus || 'none'];
+      const statusPill = document.getElementById('status-pill');
+      statusPill.textContent = status;
+      statusPill.className = 'stat-value';
+
+      const allLessons = getAllLessons();
+      const lastWatchedLesson = allLessons.find(lesson => getLessonProgress(lesson.id).lastWatched) || allLessons[0];
+      const lastProgress = lastWatchedLesson ? getLessonProgress(lastWatchedLesson.id) : null;
+
+      const lastTitle = document.getElementById('last-lesson-title');
+      const lastDescription = document.getElementById('last-lesson-description');
+      if (lastWatchedLesson) {
+        lastTitle.textContent = lastWatchedLesson.title;
+        lastDescription.textContent = lastWatchedLesson.description || 'Continua a tua aprendizagem.';
+      } else {
+        lastTitle.textContent = 'Ainda não começaste';
+        lastDescription.textContent = 'Escolhe uma aula para começar a tua jornada.';
+      }
+
+      document.getElementById('continue-learning').onclick = () => {
+        if (lastWatchedLesson) {
+          openLesson(lastWatchedLesson);
+        } else {
+          openLesson(allLessons[0]);
+        }
+      };
+    }
+
+    function renderCourse() {
+      const lessonList = document.getElementById('lessons-list');
+      const allLessons = getAllLessons();
+      const accessBanner = document.getElementById('access-banner');
+
+      if (state.currentUser.accessStatus !== 'active') {
+        accessBanner.textContent = 'Este curso ainda não está disponível para a tua conta. Adquire ou ativa o acesso para continuar.';
+        accessBanner.classList.remove('hidden');
+      } else {
+        accessBanner.classList.add('hidden');
+      }
+
+      if (!allLessons.length) {
+        lessonList.innerHTML = '<div class="empty-state">Nenhuma aula configurada.</div>';
+        return;
+      }
+
+      lessonList.innerHTML = allLessons.map((lesson) => {
+        const progress = getLessonProgress(lesson.id);
+        const locked = state.currentUser.accessStatus !== 'active';
+        const buttonText = locked ? 'Bloqueado' : (progress.completed ? 'Revisitar' : 'Abrir aula');
+        return `
+          <div class="card"> 
+            <div class="eyebrow">Aula ${lesson.number}</div>
+            <h3 style="margin: 0 0 8px;">${avoidXSS(lesson.title)}</h3>
+            <p class="muted">${avoidXSS(lesson.description)}</p>
+            <p class="muted" style="margin-top: 10px;">${avoidXSS(lesson.duration)} · ${avoidXSS(lesson.moduleTitle)}</p>
+            <div class="form-actions" style="margin-top: 16px;">
+              <button class="button ${locked ? 'secondary' : 'primary'}" data-lesson-id="${lesson.id}" type="button" ${locked ? 'disabled' : ''}>${buttonText}</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lessonList.querySelectorAll('[data-lesson-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          const id = button.getAttribute('data-lesson-id');
+          const targetLesson = getAllLessons().find(item => item.id === id);
+          if (!targetLesson) return;
+          if (state.currentUser.accessStatus !== 'active') {
+            showView('denied');
+            return;
+          }
+          openLesson(targetLesson);
+        });
+      });
+    }
+
+    function openLesson(lesson) {
+      if (!lesson) return;
+      state.selectedLesson = lesson;
+      document.getElementById('lesson-module').textContent = `${lesson.moduleTitle || 'Curso'} · Aula ${lesson.number}`;
+      document.getElementById('lesson-title').textContent = lesson.title;
+      document.getElementById('lesson-description').textContent = lesson.description;
+
+      const progress = getLessonProgress(lesson.id);
+      document.getElementById('mark-complete').textContent = progress.completed ? 'Concluída ✓' : 'Marcar como concluída';
+      document.getElementById('video-frame').innerHTML = `
+        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 1px solid rgba(45, 126, 247, 0.25);">
+          <iframe src="${avoidXSS(lesson.videoUrl)}" title="${avoidXSS(lesson.title)}" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; border-radius: 16px;"></iframe>
+        </div>
+      `;
+
+      setLessonProgress(lesson.id, { lastWatched: true, updatedAt: new Date().toISOString() });
+      renderDashboard();
+      showView('lesson');
+    }
+
+    function renderProfile() {
+      const user = state.currentUser;
+      if (!user) return;
+      const nameField = document.getElementById('profile-name');
+      const emailField = document.getElementById('profile-email');
+      const avatarField = document.getElementById('profile-avatar');
+      const createdAt = document.getElementById('profile-created-at');
+
+      nameField.value = user.name || '';
+      emailField.value = user.email || '';
+      avatarField.value = user.avatar || '';
+      createdAt.textContent = user.createdAt ? `Data de criação: ${formatDate(user.createdAt)}` : 'Data de criação: —';
+    }
+
+    function renderAdminTable() {
+      const table = document.getElementById('admin-table-body');
+      const users = getUsers();
+      if (!users.length) {
+        table.innerHTML = '<tr><td colspan="7"><div class="empty-state">Ainda não há estudantes registados.</div></td></tr>';
+        return;
+      }
+
+      table.innerHTML = users.map(user => {
+        const progress = getUserProgressMap(user.id);
+        const lessonTotal = getAllLessons().length;
+        const completed = getAllLessons().filter(lesson => progress[lesson.id]?.completed).length;
+        const percent = lessonTotal ? Math.round((completed / lessonTotal) * 100) : 0;
+        const statusClass = user.accessStatus || 'none';
+        return `
+          <tr>
+            <td>${avoidXSS(user.name || user.email.split('@')[0])}</td>
+            <td>${avoidXSS(user.email)}</td>
+            <td><span class="chip ${statusClass}">${accessLabels[user.accessStatus || 'none']}</span></td>
+            <td>Arte Digital</td>
+            <td>${percent}%</td>
+            <td>${formatDate(user.createdAt)}</td>
+            <td>
+              <div class="admin-actions">
+                <button type="button" data-user-status="active" data-user-id="${user.id}">Ativar</button>
+                <button type="button" data-user-status="pending" data-user-id="${user.id}">Pendente</button>
+                <button type="button" data-user-status="expired" data-user-id="${user.id}">Expirar</button>
+                <button type="button" data-user-status="none" data-user-id="${user.id}">Sem acesso</button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      table.querySelectorAll('[data-user-status]').forEach(button => {
+        button.addEventListener('click', () => {
+          const userId = button.getAttribute('data-user-id');
+          const nextStatus = button.getAttribute('data-user-status');
+          updateUserAccess(userId, nextStatus);
+        });
+      });
+    }
+
+    function updateUserAccess(userId, nextStatus) {
+      const users = getUsers();
+      const target = users.find(user => user.id === userId);
+      if (!target) return;
+      target.accessStatus = nextStatus;
+      saveUsers(users);
+      renderAdminTable();
+      if (state.currentUser && state.currentUser.id === userId) {
+        state.currentUser.accessStatus = nextStatus;
+        setCurrentUser(state.currentUser);
+        renderDashboard();
+        renderCourse();
+      }
+    }
+
+    function handleEmailLogin(event) {
+      event.preventDefault();
+      const emailValue = document.getElementById('login-email').value.trim();
+      const passwordValue = document.getElementById('login-password').value;
+
+      if (!emailValue || !passwordValue) {
+        setAuthMessage('Preenche todos os campos.', 'error');
+        return;
+      }
+
+      const users = getUsers();
+      const found = users.find(user => user.email.toLowerCase() === emailValue.toLowerCase());
+      if (!found) {
+        setAuthMessage('E-mail ou senha inválidos.', 'error');
+        return;
+      }
+
+      const passwordHash = hashValue(passwordValue);
+      if (found.passwordHash !== passwordHash) {
+        setAuthMessage('E-mail ou senha inválidos.', 'error');
+        return;
+      }
+
+      const safeUser = {
+        id: found.id,
+        name: found.name,
+        email: found.email,
+        avatar: found.avatar || '',
+        role: found.role || 'student',
+        accessStatus: found.accessStatus || 'none',
+        createdAt: found.createdAt
+      };
+
+      setCurrentUser(safeUser);
+      setAuthMessage('Login realizado com sucesso.', 'success');
+      renderNav();
+      renderDashboard();
+      renderCourse();
+      renderProfile();
+      renderAdminTable();
+      showView('dashboard');
+    }
+
+    function handleSignup(event) {
+      event.preventDefault();
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value;
+      const confirm = document.getElementById('confirm-password').value;
+
+      if (!name || !email || !password) {
+        setAuthMessage('Preenche nome, e-mail e senha.', 'error');
+        return;
+      }
+
+      if (password.length < 8) {
+        setAuthMessage('A senha deve ter pelo menos 8 caracteres.', 'error');
+        return;
+      }
+
+      if (password !== confirm) {
+        setAuthMessage('As senhas não coincidem.', 'error');
+        return;
+      }
+
+      const users = getUsers();
+      if (users.some(user => user.email.toLowerCase() === email.toLowerCase())) {
+        setAuthMessage('Este e-mail já está registado.', 'error');
+        return;
+      }
+
+      const newUser = {
+        id: crypto.randomUUID ? crypto.randomUUID() : `user-${Date.now()}`,
+        name,
+        email,
+        passwordHash: hashValue(password),
+        avatar: '',
+        role: 'student',
+        accessStatus: 'none',
+        createdAt: new Date().toISOString()
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+      setAuthMessage('Conta criada com sucesso. Podes entrar agora.', 'success');
+      state.authMode = 'login';
+      updateAuthUI();
+      document.getElementById('signup-name').value = '';
+      document.getElementById('confirm-password').value = '';
+    }
+
+    function handleRecovery(event) {
+      event.preventDefault();
+      const email = document.getElementById('recovery-email').value.trim();
+      const password = document.getElementById('recovery-password').value;
+      const users = getUsers();
+      const userIndex = users.findIndex(item => item.email.toLowerCase() === email.toLowerCase());
+
+      if (userIndex === -1) {
+        setAuthMessage('Nenhuma conta encontrada com este e-mail.', 'error');
+        return;
+      }
+
+      if (password.length < 8) {
+        setAuthMessage('A nova senha deve ter pelo menos 8 caracteres.', 'error');
+        return;
+      }
+
+      users[userIndex].passwordHash = hashValue(password);
+      saveUsers(users);
+      setAuthMessage('Senha atualizada com sucesso. Podes entrar com a nova palavra-passe.', 'success');
+      document.getElementById('recovery-box').classList.add('hidden');
+      document.getElementById('recovery-form').reset();
+      state.shouldShowRecovery = false;
+      state.authMode = 'login';
+      updateAuthUI();
+    }
+
+    function submitProfile(event) {
+      event.preventDefault();
+      const name = document.getElementById('profile-name').value.trim();
+      const avatar = document.getElementById('profile-avatar').value.trim();
+      const users = getUsers();
+      const target = users.find(user => user.id === state.currentUser.id);
+      if (!target) return;
+      target.name = name || state.currentUser.name || '';
+      target.avatar = avatar || '';
+      saveUsers(users);
+
+      state.currentUser = {
+        ...state.currentUser,
+        name: target.name,
+        avatar: target.avatar
+      };
+      setCurrentUser(state.currentUser);
+      setProfileMessage('Dados do perfil atualizados.', 'success');
+      renderNav();
+      renderDashboard();
+    }
+
+    function changePassword(event) {
+      event.preventDefault();
+      const newPassword = document.getElementById('new-password').value;
+      const users = getUsers();
+      const target = users.find(user => user.id === state.currentUser.id);
+
+      if (!target) return;
+      if (newPassword.length < 8) {
+        setProfileMessage('A senha deve ter pelo menos 8 caracteres.', 'error');
+        return;
+      }
+
+      target.passwordHash = hashValue(newPassword);
+      saveUsers(users);
+      document.getElementById('new-password').value = '';
+      setProfileMessage('Senha atualizada com sucesso.', 'success');
+    }
+
+    function logoutUser() {
+      setCurrentUser(null);
+      state.selectedLesson = null;
+      renderNav();
+      showView('auth');
+      setAuthMessage('', '');
+    }
+
+    function showView(name) {
+      document.querySelectorAll('.view').forEach(section => section.classList.remove('active'));
+      const target = document.getElementById(`${name}-view`);
+      if (target) {
+        target.classList.add('active');
+      }
+
+      if (name === 'dashboard' && state.currentUser) {
+        renderDashboard();
+      }
+
+      if (name === 'course' && state.currentUser) {
+        renderCourse();
+      }
+
+      if (name === 'profile' && state.currentUser) {
+        renderProfile();
+      }
+
+      if (name === 'admin' && state.currentUser?.role === 'admin') {
+        renderAdminTable();
+      }
+
+      if (name === 'denied' && state.currentUser && state.currentUser.accessStatus !== 'active') {
+        document.getElementById('purchase-link').href = APP_CONFIG.purchaseUrl || '#';
+        document.getElementById('support-link').href = getWhatsAppUrl();
+      }
+    }
+
+    function getWhatsAppUrl() {
+      const number = (APP_CONFIG.whatsappNumber || '').replace(/\D/g, '');
+      if (!number) return '#';
+      return `https://wa.me/${number}?text=${encodeURIComponent(APP_CONFIG.supportMessage)}`;
+    }
+
+    function setupLinks() {
+      const whatsapp = document.getElementById('whatsapp-button');
+      whatsapp.href = getWhatsAppUrl();
+      document.getElementById('support-link').href = getWhatsAppUrl();
+      document.getElementById('purchase-link').href = APP_CONFIG.purchaseUrl || '#';
+    }
+
+    function ensureAuthenticatedState() {
+      const savedUser = getCurrentUser();
+      if (savedUser) {
+        const users = getUsers();
+        const match = users.find(user => user.id === savedUser.id);
+        if (match) {
+          state.currentUser = {
+            id: match.id,
+            name: match.name,
+            email: match.email,
+            avatar: match.avatar || '',
+            role: match.role || 'student',
+            accessStatus: match.accessStatus || 'none',
+            createdAt: match.createdAt
+          };
+          renderNav();
+          renderDashboard();
+          renderCourse();
+          renderProfile();
+          showView('dashboard');
+          return;
+        }
+      }
+      state.currentUser = null;
+      showView('auth');
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', (event) => {
+      if (state.authMode === 'login') {
+        handleEmailLogin(event);
+      } else {
+        handleSignup(event);
+      }
+    });
+
+    document.getElementById('toggle-auth').addEventListener('click', () => {
+      state.authMode = state.authMode === 'login' ? 'signup' : 'login';
+      updateAuthUI();
+      setAuthMessage('');
+    });
+
+    document.getElementById('forgot-password').addEventListener('click', () => {
+      state.shouldShowRecovery = !state.shouldShowRecovery;
+      const recoveryBox = document.getElementById('recovery-box');
+      recoveryBox.classList.toggle('hidden', !state.shouldShowRecovery);
+      if (state.shouldShowRecovery) {
+        document.getElementById('recovery-email').focus();
+      }
+    });
+
+    document.getElementById('recovery-form').addEventListener('submit', handleRecovery);
+    document.getElementById('profile-form').addEventListener('submit', submitProfile);
+    document.getElementById('change-password-form').addEventListener('submit', changePassword);
+    document.getElementById('mark-complete').addEventListener('click', () => {
+      if (!state.selectedLesson) return;
+      const current = getLessonProgress(state.selectedLesson.id);
+      setLessonProgress(state.selectedLesson.id, {
+        completed: true,
+        lastWatched: true,
+        completedAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      });
+      document.getElementById('mark-complete').textContent = 'Concluída ✓';
+      renderDashboard();
+      renderCourse();
+      setAuthMessage('Aula marcada como concluída.', 'success');
+    });
+
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-go]');
+      if (!trigger) return;
+      const target = trigger.getAttribute('data-go');
+      if (!state.currentUser) {
+        showView('auth');
+        return;
+      }
+      if (target === 'admin' && state.currentUser.role !== 'admin') {
+        showView('denied');
+        return;
+      }
+      if (target === 'course' && state.currentUser.accessStatus !== 'active') {
+        showView('denied');
+        return;
+      }
+      showView(target);
+    });
+
+    updateAuthUI();
+    setupLinks();
+    ensureAuthenticatedState();
+  </script>
+</body>
+</html>
