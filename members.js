@@ -1,3 +1,10 @@
+const CONFIG = Object.assign({
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  whatsappNumber: "",
+  purchaseUrl: "",
+  supportMessage: "Olá, preciso de ajuda com o acesso ao curso Arte Digital."
+}, window.ARTEDG_CONFIG || {});
 /* Arte Digital members area. Configure these values in this file or inject window.ARTEDG_CONFIG before this script. Never put a service_role key here. */
 const CONFIG = Object.assign({
   supabaseUrl: '',
