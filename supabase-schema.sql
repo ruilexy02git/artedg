@@ -1,0 +1,20 @@
+-- Arte Digital membership schema for Supabase/Postgres.
+-- Run this in Supabase SQL Editor. Never expose the service_role key in the browser.
+create type public.access_status as enum ('none','pending','active','expired');
+create type public.user_role as enum ('student','admin');
+create table public.profiles (id uuid primary key references auth.users(id) on delete cascade, name text not null default '', avatar_url text, role public.user_role not null default 'student', created_at timestamptz not null default now());
+create table public.courses (id uuid primary key default gen_random_uuid(), title text not null, description text, created_at timestamptz not null default now());
+create table public.modules (id uuid primary key default gen_random_uuid(), course_id uuid not null references public.courses(id) on delete cascade, title text not null, position integer not null default 0);
+create table public.lessons (id uuid primary key default gen_random_uuid(), module_id uuid not null references public.modules(id) on delete cascade, number integer not null, title text not null, description text, duration_minutes integer, video_asset_id text, position integer not null default 0);
+create table public.enrollments (id uuid primary key default gen_random_uuid(), user_id uuid not null references auth.users(id) on delete cascade, course_id uuid not null references public.courses(id) on delete cascade, status public.access_status not null default 'none', starts_at timestamptz, expires_at timestamptz, created_at timestamptz not null default now(), unique(user_id, course_id));
+create table public.lesson_progress (user_id uuid not null references auth.users(id) on delete cascade, lesson_id uuid not null references public.lessons(id) on delete cascade, completed boolean not null default false, last_watched boolean not null default false, completed_at timestamptz, updated_at timestamptz not null default now(), primary key(user_id, lesson_id));
+create index on public.enrollments(user_id,status); create index on public.lesson_progress(user_id);
+create or replace function public.handle_new_user() returns trigger language plpgsql security definer set search_path=public as $$ begin insert into public.profiles(id,name) values(new.id,coalesce(new.raw_user_meta_data->>'name','')); return new; end; $$;
+create trigger on_auth_user_created after insert on auth.users for each row execute procedure public.handle_new_user();
+-- RLS: every student can read/update only their own profile/progress; active enrollment is required for lessons.
+alter table public.profiles enable row level security; alter table public.courses enable row level security; alter table public.modules enable row level security; alter table public.lessons enable row level security; alter table public.enrollments enable row level security; alter table public.lesson_progress enable row level security;
+create policy "own profile" on public.profiles for select using(auth.uid()=id); create policy "update own profile" on public.profiles for update using(auth.uid()=id) with check(auth.uid()=id);
+create policy "published courses" on public.courses for select using(true); create policy "published modules" on public.modules for select using(true);
+create policy "lessons for active students" on public.lessons for select using(exists(select 1 from public.enrollments e join public.modules m on m.course_id=e.course_id where e.user_id=auth.uid() and e.status='active' and m.id=lessons.module_id));
+create policy "own enrollment" on public.enrollments for select using(auth.uid()=user_id); create policy "own progress" on public.lesson_progress for select using(auth.uid()=user_id); create policy "write own progress" on public.lesson_progress for insert with check(auth.uid()=user_id); create policy "update own progress" on public.lesson_progress for update using(auth.uid()=user_id) with check(auth.uid()=user_id);
+-- Admin reporting and access changes must be implemented in a server-side Edge Function using service_role after checking profiles.role='admin'.
