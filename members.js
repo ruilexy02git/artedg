@@ -10,6 +10,11 @@ async function handleLoginSuccess(userData) {
   localStorage.setItem("artedg_current_user", userData?.email || "user");
   window.location.hash = "#/membros/dashboard";
 }
+function handleLogout() {
+  localStorage.removeItem("artedg_current_user");
+  delete window.__ARTE_MEMBER_USER;
+  window.location.hash = "#/membros/login";
+}
 /* Arte Digital members area. Configure these values in this file or inject window.ARTEDG_CONFIG before this script. Never put a service_role key here. */
 const CONFIG = Object.assign({
   supabaseUrl: '',
