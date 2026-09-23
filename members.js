@@ -15,6 +15,9 @@ function handleLogout() {
   delete window.__ARTE_MEMBER_USER;
   window.location.hash = "#/membros/login";
 }
+function openAccessDenied() {
+  window.location.hash = "#/membros/acesso";
+}
 /* Arte Digital members area. Configure these values in this file or inject window.ARTEDG_CONFIG before this script. Never put a service_role key here. */
 const CONFIG = Object.assign({
   supabaseUrl: '',
