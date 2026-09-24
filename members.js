@@ -1,3 +1,10 @@
+const CONFIG = Object.assign({
+  supabaseUrl: 'COLOQUE_AQUI_A_URL_DO_SUPABASE',
+  supabaseAnonKey: 'COLOQUE_AQUI_A_CHAVE_ANON_DO_SUPABASE',
+  whatsappNumber: '',
+  purchaseUrl: '',
+  supportMessage: 'Olá, preciso de ajuda com o acesso ao curso Arte Digital.'
+}, window.ARTEDG_CONFIG || {});
 // Alternar entre modo de Login e Registo
 const toggleAuthBtn = document.getElementById('toggle-auth');
 const authTitle = document.getElementById('auth-title');
